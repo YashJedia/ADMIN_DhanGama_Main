@@ -40,6 +40,7 @@ $config['base_url'] = $root;
 */
 $config['index_page'] = 'index.php';
 
+
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
