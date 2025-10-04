@@ -9,9 +9,18 @@ class Payment extends CI_controller
 
 	public function __construct()
 	{
-		parent::__construct();
-		$this->load->model('ApiModel', 'apiModel');
-		$this->load->model('Web_model');
+		   parent::__construct();
+		   $this->load->model('ApiModel', 'apiModel');
+		   $this->load->model('Web_model');
+		   // CORS headers for all API responses
+		   header('Access-Control-Allow-Origin: *');
+		   header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+		   header('Access-Control-Allow-Headers: Content-Type, Authorization');
+		   // Handle preflight requests
+		   if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+			   header('Content-Type: application/json');
+			   exit(0);
+		   }
 	}
 
 	/**

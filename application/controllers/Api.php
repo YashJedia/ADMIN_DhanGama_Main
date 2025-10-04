@@ -6,9 +6,18 @@ class Api extends CI_controller
 {
 	public function __construct()
 	{
-		parent::__construct();
-		$this->load->model('ApiModel', 'apiModel');
-		$this->load->model('Web_model');
+		   parent::__construct();
+		   $this->load->model('ApiModel', 'apiModel');
+		   $this->load->model('Web_model');
+		   // CORS headers for all API responses
+		   header('Access-Control-Allow-Origin: *');
+		   header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+		   header('Access-Control-Allow-Headers: Content-Type, Authorization');
+		   // Handle preflight requests
+		   if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+			   header('Content-Type: application/json');
+			   exit(0);
+		   }
 	}
 
 	private function sendResponse($status, $message = '', $data = [])
@@ -1203,5 +1212,12 @@ class Api extends CI_controller
 
 		curl_close($curl);
 		echo $response;
+	}
+	// Get the latest home message for frontend
+	public function home_message()
+	{
+		$this->load->model('HomeMessage_model');
+		$message = $this->HomeMessage_model->get_message();
+		return $this->sendResponse(true, 'Success', [ 'message' => $message ]);
 	}
 }
