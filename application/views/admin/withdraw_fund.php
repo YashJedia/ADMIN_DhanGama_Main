@@ -64,7 +64,10 @@
 										<th>Date</th>
 										<th>Amount</th>
 										<th>Withdrawl Request</th>
-										<th>Payment Image</th>
+										<th>Account Holder</th>
+										<th>Account Number</th>
+										<th>IFSC Code</th>
+										<th>Bank Name</th>
 										<th>Status</th>
 									</tr>
 									</thead>
@@ -78,13 +81,10 @@
 											<td><?= $value->txn_req_date ?></td>
 											<td><?= $value->txn_req_amt ?></td>
 											<td><?= $value->payment_method.'<br>'.$value->request_number ?></td>
-											<td>
-												<?php if(!empty($value->payment_image)):?>
-												<a href="<?= base_url($value->payment_image) ?>" target="_blank">
-													<img src="<?= base_url($value->payment_image) ?>" class="img-fluid" width="100">
-												</a>
-												<?php endif?>
-											</td>
+											<td><?= $value->user_name ?></td>
+											<td><?= $value->bank_account ?></td>
+											<td><?= $value->ifsc_code ?></td>
+											<td><?= $value->bank_name ?></td>
 											<td>
 												<button class="<?php if ($value->txn_status === 'PENDING') {
 													echo 'btn btn-warning btn-sm btn-block';

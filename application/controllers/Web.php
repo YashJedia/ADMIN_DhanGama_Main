@@ -359,10 +359,14 @@ class Web extends CI_controller{
 
 				if ($this->input->post('points') < $this->input->post('walletAmnt') && $this->input->post('txn_type') === 'WITHDRAW') {
 					$datas = array(
-						'txn_user_id ' => $this->input->post('id'),
+						'txn_user_id' => $this->input->post('id'),
 						'txn_req_amt' => $this->input->post('points'),
 						'txn_type' => $this->input->post('txn_type'),
-						'txn_details' => "Requested by User"
+						'txn_details' => "Requested by User",
+						'user_name' => $this->input->post('holder_name'),
+						'bank_account' => $this->input->post('bank_account'),
+						'ifsc_code' => $this->input->post('ifsc_code'),
+						'bank_name' => $this->input->post('bank_name')
 					);
 
 					$result = $this->Web_model->create_withdepo($datas);

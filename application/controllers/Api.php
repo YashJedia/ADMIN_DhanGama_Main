@@ -768,7 +768,7 @@ class Api extends CI_controller
 	public function settings()
 	{
 		$result = $this->Admin_model->getSetting();
-		$video = $this->db->get('video')->row('video_browse');
+	// $video = $this->db->get('video')->row('video_browse');
 		$result->pn = $result->payment_key;
 		$result->pa = $result->payment_marchent_key;
 		$result->mc = $result->payment_secret_key;
@@ -912,6 +912,10 @@ class Api extends CI_controller
 				'txn_type' => "WITHDRAW",
 				'payment_method' => $method,
 				'request_number' => $this->input->post('request_number'),
+				'user_name' => $this->input->post('holder_name'),
+				'bank_account' => $this->input->post('bank_account'),
+				'ifsc_code' => $this->input->post('ifsc_code'),
+				'bank_name' => $this->input->post('bank_name'),
 			];
 
 			$result = $this->apiModel->insertWalletTransactions($data);
@@ -929,7 +933,7 @@ class Api extends CI_controller
 	{
 
 		$this->request('GET', '/api/video');
-		$video = $this->db->get('video')->row('video_browse');
+	// $video = $this->db->get('video')->row('video_browse');
 
 		return $this->sendResponse(true, SUCCESS_MSG, base_url($video));
 	}

@@ -10622,12 +10622,15 @@ CREATE TABLE `wallet_transactions` (
   `txn_req_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `txn_req_approve_date` datetime DEFAULT NULL,
   `txn_type` enum('WITHDRAW','DEPOSIT') NOT NULL,
-  `payment_method` varchar(255) DEFAULT NULL COMMENT 'PayTm, PhonePe, Google Pay	',
+  `payment_method` varchar(255) DEFAULT NULL COMMENT 'PayTm, PhonePe, Google Pay\t',
   `txn_status` enum('PENDING','APPROVED','REJECT') NOT NULL DEFAULT 'PENDING',
   `payment_txn_id` varchar(255) DEFAULT NULL,
   `payment_image` varchar(255) DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
-  `request_number` varchar(255) DEFAULT NULL
+  `request_number` varchar(255) DEFAULT NULL,
+  `bank_account` varchar(255) DEFAULT NULL,
+  `ifsc_code` varchar(255) DEFAULT NULL,
+  `bank_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
